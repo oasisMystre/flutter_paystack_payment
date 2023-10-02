@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_paystack_payment/src/api/service/bank_service.dart';
 import 'package:flutter_paystack_payment/src/api/service/card_service.dart';
 import 'package:flutter_paystack_payment/src/common/exceptions.dart';
@@ -45,7 +46,7 @@ class PaystackPayment {
 
     // Using cascade notation to build the platform specific info
     try {
-      platformInfo = (Platform.environment.containsKey('FLUTTER_TEST')
+      platformInfo = (kDebugMode
           ? (await PlatformInfo.test())!
           : (await PlatformInfo.getinfo()))!;
       _publicKey = publicKey;
